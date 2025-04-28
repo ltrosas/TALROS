@@ -1,0 +1,12 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node.js/Electron
+node_modules/
+
+# General
+.DS_Store
+.env
+*.db
