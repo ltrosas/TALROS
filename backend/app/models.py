@@ -4,6 +4,7 @@ from datetime import datetime
 
 class Truck(Base):
     __tablename__ = "truck"
+    __table_args__ = {'schema': 'dbo'}
 
     id = Column(Integer, primary_key=True, index=True)
     registration = Column(String)
@@ -16,6 +17,7 @@ class Truck(Base):
 
 class Loads(Base):
     __tablename__ = "loads"
+    __table_args__ = {'schema': 'dbo'}
 
     id = Column(Integer, primary_key=True, index=True)
     weight = Column(Float)
@@ -27,6 +29,7 @@ class Loads(Base):
 
 class Trip(Base):
     __tablename__ = "trip"
+    __table_args__ = {'schema': 'dbo'}
 
     id = Column(Integer, primary_key=True, index=True)
     truck_id = Column(Integer, ForeignKey("truck.id"))

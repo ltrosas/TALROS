@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
-dbname=os.getenv("DB_NAME", "movies")
+dbname=os.getenv("DB_NAME", "TALROS")
 user=os.getenv("DB_USER")
 password=os.getenv("DB_PASS")
 host=os.getenv("DB_HOST", "localhost")

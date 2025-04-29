@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from .. import models, database
+from .. import models, database, schemas
 from fastapi import Path, HTTPException
 
 router = APIRouter(
@@ -9,18 +9,18 @@ router = APIRouter(
 )
 
 @router.post("/")
-def create_truck(registration: str, make: str, model: str, year: int, weight: float, db: Session = Depends(database.get_db)):
-    truck = models.Truck(
-        registration=registration,
-        make=make,
-        model=model,
-        year=year,
-        weight=weight
+def create_truck(truck: schemas.TruckCreate, db: Session = Depends(database.get_db)):
+    truck_model = models.Truck(
+        registration=truck.registration,
+        make=truck.make,
+        model=truck.model,
+        year=truck.year,
+        weight=truck.weight
     )
-    db.add(truck)
+    db.add(truck_model)
     db.commit()
-    db.refresh(truck)
-    return truck
+    db.refresh(truck_model)
+    return truck_model
 
 @router.get("/")
 def get_trucks(db: Session = Depends(database.get_db)):
