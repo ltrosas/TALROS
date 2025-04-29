@@ -32,8 +32,8 @@ class Trip(Base):
     __table_args__ = {'schema': 'dbo'}
 
     id = Column(Integer, primary_key=True, index=True)
-    truck_id = Column(Integer, ForeignKey("truck.id"))
-    loads_id = Column(Integer, ForeignKey("loads.id"))
+    truck_id = Column(Integer, ForeignKey("dbo.truck.id"))
+    loads_id = Column(Integer, ForeignKey("dbo.loads.id"))
     initial_mileage = Column(Integer)
     final_mileage = Column(Integer)
     fuel_used = Column(Float)

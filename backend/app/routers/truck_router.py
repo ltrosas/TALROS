@@ -45,9 +45,9 @@ def search_trucks(query: str, db: Session = Depends(database.get_db)):
 
     return trucks
 
-@router.delete("/{registration}")
-def delete_truck(registration: str, db: Session = Depends(database.get_db)):
-    truck = db.query(models.Truck).filter(models.Truck.registration == registration).first()
+@router.delete("/{id}")
+def delete_truck(id: int, db: Session = Depends(database.get_db)):
+    truck = db.query(models.Truck).filter(models.Truck.id == id).first()
 
     if not truck:
         raise HTTPException(status_code=404, detail="Truck not found.")
