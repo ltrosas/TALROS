@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Input } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/input';
-import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/card';
-import { Label } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/label';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { Toaster, toast } from 'sonner';
 
 export default function CreateTrip() {

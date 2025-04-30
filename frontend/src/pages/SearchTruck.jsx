@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Input } from '../components/ui/input';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -8,9 +8,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../components/ui/table';
-import { Button } from '../components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+} from '@/components/ui/table';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Trash2 } from 'lucide-react';
 
 export default function SearchTruck() {
@@ -80,7 +80,7 @@ export default function SearchTruck() {
 
       <Input
         type="text"
-        placeholder="Search by registration..."
+        placeholder="Search by registration@."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="mb-4"

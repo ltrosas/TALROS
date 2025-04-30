@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
-import { Sheet, SheetTrigger, SheetContent } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/sheet';
-import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/button';
+import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
 import { clsx } from 'clsx';
 
 const navItems = [

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card } from "/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/card";
+import { Card } from "@/components/ui/card";
 
 export default function Layout({ children }) {
   return (
