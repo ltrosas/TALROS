@@ -1,91 +1,109 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
+import { Input } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/input';
+import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/card';
+import { Label } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/label';
+import { Toaster, toast } from 'sonner';
 
-function CreateLoad() {
+export default function CreateLoad() {
   const [formData, setFormData] = useState({
-    weight: "",
-    type: "",
-    width: "",
-    height: "",
-    cost: "",
+    weight: '',
+    type: '',
+    width: '',
+    height: '',
+    cost: '',
   });
 
-  const [message, setMessage] = useState("");
-
   const handleChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://127.0.0.1:8000/loads/", {
-        ...formData,
-        weight: parseFloat(formData.weight),
-        width: parseFloat(formData.width),
-        height: parseFloat(formData.height),
-        cost: parseFloat(formData.cost),
+      await axios.post('http://localhost:8000/loads/', formData);
+      toast.success('Load created successfully!');
+      setFormData({
+        weight: '',
+        type: '',
+        width: '',
+        height: '',
+        cost: '',
       });
-      setMessage("Load created successfully!");
-      setFormData({ weight: "", type: "", width: "", height: "", cost: "" });
     } catch (err) {
+      toast.error('Failed to create load.');
       console.error(err);
-      setMessage("Failed to create load.");
     }
   };
 
   return (
-    <div>
-      <h1>Create Load</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="number"
-          name="weight"
-          placeholder="Weight"
-          value={formData.weight}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="type"
-          placeholder="Type"
-          value={formData.type}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          name="width"
-          placeholder="Width"
-          value={formData.width}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          name="height"
-          placeholder="Height"
-          value={formData.height}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          name="cost"
-          placeholder="Cost"
-          value={formData.cost}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Create Load</button>
-      </form>
-      <p>{message}</p>
+    <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
+      <Toaster />
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Create Load</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="weight">Weight (kg)</Label>
+              <Input
+                id="weight"
+                name="weight"
+                type="number"
+                value={formData.weight}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="type">Type</Label>
+              <Input
+                id="type"
+                name="type"
+                value={formData.type}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="width">Width (m)</Label>
+              <Input
+                id="width"
+                name="width"
+                type="number"
+                value={formData.width}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="height">Height (m)</Label>
+              <Input
+                id="height"
+                name="height"
+                type="number"
+                value={formData.height}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="cost">Cost ($)</Label>
+              <Input
+                id="cost"
+                name="cost"
+                type="number"
+                value={formData.cost}
+                onChange={handleChange}
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              Create Load
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
-
-export default CreateLoad;

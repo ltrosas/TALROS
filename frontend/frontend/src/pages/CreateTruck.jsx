@@ -1,73 +1,107 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
+import { Input } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/input';
+import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/card';
+import { Label } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/label';
+import { Toaster, toast } from 'sonner';
 
-function CreateTruck() {
-  const [registration, setRegistration] = useState("");
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
-  const [year, setYear] = useState("");
-  const [weight, setWeight] = useState("");
+export default function CreateTruck() {
+  const [formData, setFormData] = useState({
+    registration: '',
+    make: '',
+    model: '',
+    year: '',
+    weight: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/truck/", {
-        registration,
-        make,
-        model,
-        year: parseInt(year),
-        weight: parseFloat(weight),
+      await axios.post('http://localhost:8000/truck/', formData);
+      toast.success('Truck created successfully!');
+      setFormData({
+        registration: '',
+        make: '',
+        model: '',
+        year: '',
+        weight: '',
       });
-      alert("Truck created successfully!");
-      setRegistration("");
-      setMake("");
-      setModel("");
-      setYear("");
-      setWeight("");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to create truck.");
+    } catch (err) {
+      toast.error('Failed to create truck.');
+      console.error(err);
     }
   };
 
   return (
-    <div>
-      <h1>Create Truck</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Registration"
-          value={registration}
-          onChange={(e) => setRegistration(e.target.value)}
-        /><br />
-        <input
-          type="text"
-          placeholder="Make"
-          value={make}
-          onChange={(e) => setMake(e.target.value)}
-        /><br />
-        <input
-          type="text"
-          placeholder="Model"
-          value={model}
-          onChange={(e) => setModel(e.target.value)}
-        /><br />
-        <input
-          type="number"
-          placeholder="Year"
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
-        /><br />
-        <input
-          type="number"
-          placeholder="Weight"
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
-        /><br />
-        <button type="submit">Create Truck</button>
-      </form>
+    <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
+      <Toaster />
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Create Truck</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="registration">Registration</Label>
+              <Input
+                id="registration"
+                name="registration"
+                value={formData.registration}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="make">Make</Label>
+              <Input
+                id="make"
+                name="make"
+                value={formData.make}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="model">Model</Label>
+              <Input
+                id="model"
+                name="model"
+                value={formData.model}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="year">Year</Label>
+              <Input
+                id="year"
+                name="year"
+                type="number"
+                value={formData.year}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="weight">Weight (kg)</Label>
+              <Input
+                id="weight"
+                name="weight"
+                type="number"
+                value={formData.weight}
+                onChange={handleChange}
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              Create Truck
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
-
-export default CreateTruck;
