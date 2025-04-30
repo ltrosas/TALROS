@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from .. import models, database, schemas
 from fastapi import Path, HTTPException
+from sqlalchemy.exc import IntegrityError
 
 router = APIRouter(
     prefix="/truck",
@@ -51,7 +52,15 @@ def delete_truck(id: int, db: Session = Depends(database.get_db)):
 
     if not truck:
         raise HTTPException(status_code=404, detail="Truck not found.")
-
-    db.delete(truck)
-    db.commit()
-    return {"detail": "Truck deleted successfully."}
+    try:
+        db.delete(truck)
+        db.commit()
+        return {"message": "Truck deleted successfully"}
+    except IntegrityError as e:
+        db.rollback()
+        if "foreign key constraint" in str(e.orig).lower():
+            raise HTTPException(
+                status_code=400,
+                detail="Cannot delete this truck. It is associated with an existing trip.",
+            )
+        raise  # re-raise for other integrity errors
