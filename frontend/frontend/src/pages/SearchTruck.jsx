@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Input } from '../components/ui/input';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '../components/ui/table';
 import { Button } from '../components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+import { Trash2 } from 'lucide-react';
 
 export default function SearchTruck() {
   const [trucks, setTrucks] = useState([]);
@@ -66,45 +75,65 @@ export default function SearchTruck() {
   };  
 
   return (
-    <div className="flex flex-col items-center justify-start px-4 py-10 min-h-screen bg-gray-50">
-      <h1 className="text-3xl font-semibold mb-6">Search Trucks</h1>
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-2xl font-semibold mb-4">Search Trucks</h1>
 
-      <div className="flex gap-2 w-full max-w-md mb-4">
-        <Input
-          placeholder="Search by registration..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <Button onClick={handleSearch}>Search</Button>
-      </div>
+      <Input
+        type="text"
+        placeholder="Search by registration..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="mb-4"
+      />
 
       {errorMessage && (
-        <div className="mb-4 text-red-600 font-medium">{errorMessage}</div>
+        <div className="mb-4 text-red-500 bg-red-100 p-3 rounded-md">{errorMessage}</div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
-        {filteredTrucks.map((truck) => (
-          <Card key={truck.id}>
-            <CardHeader className="flex justify-between items-center">
-              <CardTitle>{truck.registration}</CardTitle>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => handleDelete(truck.id)}
-              >
-                Delete
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <p><strong>Make:</strong> {truck.make}</p>
-              <p><strong>Model:</strong> {truck.model}</p>
-              <p><strong>Year:</strong> {truck.year}</p>
-              <p><strong>Weight:</strong> {truck.weight} kg</p>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="overflow-auto rounded-md border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Registration</TableHead>
+              <TableHead>Make</TableHead>
+              <TableHead>Model</TableHead>
+              <TableHead>Year</TableHead>
+              <TableHead>Weight</TableHead>
+              <TableHead className="text-left">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredTrucks.map((truck) => (
+              <TableRow key={truck.id}>
+                <TableCell className="text-left" style={{ width: 'auto' }}>{truck.registration}</TableCell>
+                <TableCell className="text-left" style={{ width: 'auto' }}>{truck.make}</TableCell>
+                <TableCell className="text-left" style={{ width: 'auto' }}>{truck.model}</TableCell>
+                <TableCell className="text-left" style={{ width: 'auto' }}>{truck.year}</TableCell>
+                <TableCell className="text-left" style={{ width: 'auto' }}>{truck.weight}</TableCell>
+                <TableCell className="text-left" style={{ width: 'auto' }}>
+                  <Button
+                    variant="destructive"
+                    size="sm"
+                    onClick={() => handleDelete(truck.id)}
+                    className="text-left"
+                    style={{ width: 'auto' }}
+                  >
+                    <Trash2 className="text-left" style={{ width: 'auto' }} />
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+            {filteredTrucks.length === 0 && (
+              <TableRow>
+                <TableCell className="text-left" style={{ width: 'auto' }}>
+                  No trucks found.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
-}
+};
