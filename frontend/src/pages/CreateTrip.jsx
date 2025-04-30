@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Input } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/input';
-import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/card';
-import { Label } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/label';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/select';
+import { Input } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/input';
+import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/card';
+import { Label } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/label';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/select';
 import { Toaster, toast } from 'sonner';
 
 export default function CreateTrip() {
@@ -102,7 +102,7 @@ export default function CreateTrip() {
             </div>
 
             <div>
-              <Label htmlFor="initial_mileage">Initial Mileage</Label>
+              <Label htmlFor="initial_mileage">Initial Mileage (km)</Label>
               <Input
                 id="initial_mileage"
                 name="initial_mileage"
@@ -113,7 +113,7 @@ export default function CreateTrip() {
             </div>
 
             <div>
-              <Label htmlFor="final_mileage">Final Mileage</Label>
+              <Label htmlFor="final_mileage">Final Mileage (km)</Label>
               <Input
                 id="final_mileage"
                 name="final_mileage"

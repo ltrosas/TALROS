@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { Card } from "/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/card";
+import { Card } from "/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/card";
 
 export default function Layout({ children }) {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800">
       <header className="bg-white shadow">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold text-primary">Fleet Manager</h1>
+          <h1 className="text-xl font-bold text-primary">TALROS</h1>
           <nav className="space-x-4">
             <Link className="text-sm font-medium hover:text-primary" to="/create-truck">Create Truck</Link>
             <Link className="text-sm font-medium hover:text-primary" to="/search-truck">Search Truck</Link>

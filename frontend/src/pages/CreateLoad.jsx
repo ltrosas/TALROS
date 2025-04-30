@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Input } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/input';
-import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/card';
-import { Label } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/label';
+import { Input } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/input';
+import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/card';
+import { Label } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/label';
 import { Toaster, toast } from 'sonner';
 
 export default function CreateLoad() {
@@ -89,7 +89,7 @@ export default function CreateLoad() {
               />
             </div>
             <div>
-              <Label htmlFor="cost">Cost ($)</Label>
+              <Label htmlFor="cost">Cost (R$)</Label>
               <Input
                 id="cost"
                 name="cost"

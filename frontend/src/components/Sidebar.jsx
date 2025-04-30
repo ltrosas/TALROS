@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Menu } from 'lucide-react';
-import { Sheet, SheetTrigger, SheetContent } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/sheet';
-import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/frontend/src/components/ui/button';
+import { Sheet, SheetTrigger, SheetContent } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/sheet';
+import { Button } from '/Users/ltrosas/Documents/TALROS/frontend/src/components/ui/button';
 import { clsx } from 'clsx';
 
 const navItems = [
@@ -14,7 +14,7 @@ const navItems = [
 export default function Sidebar() {
   return (
     <div className="bg-white shadow px-4 py-3 flex justify-between items-center md:hidden">
-      <h1 className="text-lg font-semibold">Fleet Manager</h1>
+      <h1 className="text-lg font-semibold">TALROS</h1>
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon">

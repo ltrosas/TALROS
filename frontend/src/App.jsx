@@ -19,7 +19,7 @@ function App() {
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Sidebar for medium+ screens */}
       <aside className="hidden md:flex flex-col w-64 bg-white border-r p-4 space-y-4">
-        <h1 className="text-xl font-bold mb-6">Fleet Manager</h1>
+        <h1 className="text-xl font-bold mb-6">TALROS</h1>
         {navItems.map((item) => (
           <NavLink
             key={item.to}
