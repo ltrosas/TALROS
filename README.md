@@ -13,7 +13,7 @@ Designed to manage trucks, loads, and trips.
 
 ---
 
-## ⚙️ Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
