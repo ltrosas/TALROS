@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Trash2 } from 'lucide-react';
-const IP = import.meta.env.IPT;
+const IP = import.meta.env.VITE_IP;
 
 export default function SearchTruck() {
   const [trucks, setTrucks] = useState([]);
@@ -25,7 +25,7 @@ export default function SearchTruck() {
 
   const fetchTrucks = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/truck/'); //'http://127.0.0.1:8000/truck/' `${IPT}/truck/`
+      const response = await axios.get(`${IP}/truck/`);
       setTrucks(response.data);
       setFilteredTrucks(response.data);
     } catch (error) {
@@ -51,7 +51,7 @@ export default function SearchTruck() {
     if (!confirmDelete) return;
   
     try {
-      await axios.delete(`http://127.0.0.1:8000/truck/${id}`); //`http://127.0.0.1:8000/truck/${id}` `${IPT}/truck/${id}`
+      await axios.delete(`${IP}/truck/${id}`);
       const updated = trucks.filter((truck) => truck.id !== id);
       setTrucks(updated);
       setFilteredTrucks(updated);
