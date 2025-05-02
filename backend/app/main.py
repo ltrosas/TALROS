@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from .routers import truck_router, loads_router, trip_router
-from . import models, database
 from fastapi.middleware.cors import CORSMiddleware
 
 # Create FastAPI app
