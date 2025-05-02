@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { Toaster, toast } from 'sonner';
+const API = import.meta.env.VITE_API_URL;
 
 export default function CreateTrip() {
   const [trucks, setTrucks] = useState([]);
@@ -21,8 +22,8 @@ export default function CreateTrip() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const truckRes = await axios.get('http://localhost:8000/truck/');
-        const loadRes = await axios.get('http://localhost:8000/loads/');
+        const truckRes = await axios.get(`${API}/truck/`);
+        const loadRes = await axios.get(`${API}/loads/`);
         setTrucks(truckRes.data);
         setLoads(loadRes.data);
       } catch (error) {
@@ -46,7 +47,7 @@ export default function CreateTrip() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/trip/', formData);
+      await axios.post(`${API}/trip/`, formData);
       toast.success('Trip created successfully!');
       setFormData({
         truck_id: '',

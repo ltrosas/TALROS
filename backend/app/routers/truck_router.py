@@ -63,4 +63,4 @@ def delete_truck(id: int, db: Session = Depends(database.get_db)):
                 status_code=400,
                 detail="Cannot delete this truck. It is associated with an existing trip.",
             )
-        raise  # re-raise for other integrity errors
+        raise

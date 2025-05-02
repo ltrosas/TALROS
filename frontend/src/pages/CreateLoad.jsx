@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Toaster, toast } from 'sonner';
+const API = import.meta.env.VITE_API_URL;
 
 export default function CreateLoad() {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ export default function CreateLoad() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/loads/', formData);
+      await axios.post(`${API}/loads/`, formData);
       toast.success('Load created successfully!');
       setFormData({
         weight: '',

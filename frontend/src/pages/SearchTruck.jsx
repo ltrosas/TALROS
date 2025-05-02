@@ -10,8 +10,8 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Trash2 } from 'lucide-react';
+const IP = import.meta.env.IPT;
 
 export default function SearchTruck() {
   const [trucks, setTrucks] = useState([]);
@@ -25,7 +25,7 @@ export default function SearchTruck() {
 
   const fetchTrucks = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/truck/');
+      const response = await axios.get('http://127.0.0.1:8000/truck/'); //'http://127.0.0.1:8000/truck/' `${IPT}/truck/`
       setTrucks(response.data);
       setFilteredTrucks(response.data);
     } catch (error) {
@@ -51,7 +51,7 @@ export default function SearchTruck() {
     if (!confirmDelete) return;
   
     try {
-      await axios.delete(`http://127.0.0.1:8000/truck/${id}`);
+      await axios.delete(`http://127.0.0.1:8000/truck/${id}`); //`http://127.0.0.1:8000/truck/${id}` `${IPT}/truck/${id}`
       const updated = trucks.filter((truck) => truck.id !== id);
       setTrucks(updated);
       setFilteredTrucks(updated);
@@ -78,13 +78,17 @@ export default function SearchTruck() {
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-2xl font-semibold mb-4">Search Trucks</h1>
 
-      <Input
-        type="text"
-        placeholder="Search by registration@."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-4"
-      />
+      <div className="flex gap-2 mb-4">
+        <Input
+          type="text"
+          placeholder="Search by registration..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className="w-full"
+        />
+        <Button onClick={handleSearch}>Search</Button>
+      </div>
 
       {errorMessage && (
         <div className="mb-4 text-red-500 bg-red-100 p-3 rounded-md">{errorMessage}</div>
@@ -136,4 +140,4 @@ export default function SearchTruck() {
       </div>
     </div>
   );
-};
+}

@@ -10,6 +10,10 @@ __pycache__/
 *.sqlite3
 *.egg-info/
 .env
+.env
+.env.local
+backend/.env
+backend/.env.local
 *.log
 
 # Virtual Environments
@@ -22,6 +26,10 @@ dist/
 build/
 .vite/
 .env.local
+.env
+.env.local
+frontend/.env
+frontend/.env.local
 
 # React / Build
 build/

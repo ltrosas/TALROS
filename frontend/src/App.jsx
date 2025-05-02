@@ -6,7 +6,7 @@ import CreateTrip from './pages/CreateTrip';
 import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 import { clsx } from 'clsx';
-import talrosLogo from "/Users/ltrosas/Documents/TALROS/frontend/src/talros_logov2.svg";
+import talrosLogo from "./talros_logov2.svg";
 
 const navItems = [
   { to: '/create-truck', label: 'Create Truck' },
